@@ -1,27 +1,37 @@
-import Vue from "vue";
-import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
-
-Vue.use(VueRouter);
+import Vue from "vue"
+import { IonicVueRouter } from '@modus/ionic-vue'
+import App from "../pages/App.vue"
+import Home from "../pages/Home.vue"
+import About from "../pages/About.vue"
+import Database from '../pages/Database'
+Vue.use(IonicVueRouter)
 
 const routes = [
   {
     path: "/",
-    name: "Home",
-    component: Home
+    name: 'App',
+    component: App,
+    children: [
+      {
+        path: "/home",
+        name: "Home",
+        component: Home,
+      },
+      {
+        path: "/about",
+        name: "About",
+        component: About,
+      },
+      {
+        path: "/database",
+        name: "Database",
+        component: Database,
+      }
+    ]
   },
-  {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue")
-  }
 ];
 
-const router = new VueRouter({
+const router = new IonicVueRouter({
   routes
 });
 
