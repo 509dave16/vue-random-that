@@ -12,15 +12,15 @@
       </ion-tab>
       <ion-tab-bar slot="bottom">
         <ion-tab-button tab="Home">
-          <ion-icon class="tab-icon" name="home-outline"></ion-icon>
+          <ion-icon class="tab-icon" v-bind:name="getIconName('Home', 'home')"></ion-icon>
           <ion-label>Home</ion-label>
         </ion-tab-button>
         <ion-tab-button tab="About">
-          <ion-icon class="tab-icon" name="information-circle-outline" />
+          <ion-icon class="tab-icon" v-bind:name="getIconName('About', 'information-circle')" />
           <ion-label>About</ion-label>
         </ion-tab-button>
         <ion-tab-button tab="Database">
-          <ion-icon class="tab-icon" name="cloud-outline" />
+          <ion-icon class="tab-icon" v-bind:name="getIconName('Database', 'cloud')" />
           <ion-label>Database</ion-label>
         </ion-tab-button>
       </ion-tab-bar>
@@ -39,7 +39,7 @@ import Home from './Home.vue'
 import About from './About.vue'
 import Database from './Database'
 
-import { home, homeOutline, informationCircleOutline, informationCircle, cloudOutline, cloud } from "ionicons/icons";
+import { home, homeOutline, informationCircleOutline, informationCircle, cloudOutline, cloud, } from "ionicons/icons";
 import { addIcons } from "ionicons";
 addIcons({
   home,
@@ -65,9 +65,10 @@ export default {
   methods: {
     onTabChange: function (event) {
       console.log('<<<onTabChange - event', event)
+      this.activeTab = event.detail.tab
     },
-    isActiveTab: async function (tab) {
-      return this.activeTab === tab
+    getIconName: function (tab, iconName) {
+      return iconName + (tab === this.activeTab ? '' : '-outline')
     }
   }
 }
