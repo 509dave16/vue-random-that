@@ -1,7 +1,7 @@
 import { appSchema, tableSchema } from '@nozbe/watermelondb'
 
 export default appSchema({
-  version: 1,
+  version: 2,
   tables: [
     tableSchema({
       name: 'blogs',
@@ -17,7 +17,7 @@ export default appSchema({
         { name: 'is_pinned', type: 'boolean' },
         { name: 'created_at', type: 'number' },
         { name: 'updated_at', type: 'number' },
-      ]
+      ],
     }),
     tableSchema({
       name: 'comments',
@@ -26,7 +26,19 @@ export default appSchema({
         { name: 'post_id', type: 'string', isIndexed: true },
         { name: 'created_at', type: 'number' },
         { name: 'updated_at', type: 'number' },
-      ]
+      ],
     }),
-  ]
+    tableSchema({
+      name: 'lists',
+      columns: [{ name: 'name', type: 'string' }],
+    }),
+    tableSchema({
+      name: 'items',
+      columns: [
+        { name: 'list_id', type: 'string', isIndexed: true },
+        { name: 'name', type: 'string' },
+        { name: 'done', type: 'boolean' },
+      ],
+    }),
+  ],
 })
