@@ -1,38 +1,22 @@
-import Vue from "vue"
+import Vue from 'vue'
 import { IonicVueRouter } from '@modus/ionic-vue'
-import App from "../pages/App.vue"
-import Home from "../pages/Home.vue"
-import About from "../pages/About.vue"
-import Database from '../pages/Database'
+import App from '../pages/App.vue'
 Vue.use(IonicVueRouter)
 
 const routes = [
   {
-    path: "/",
+    path: '/:tab',
     name: 'App',
     component: App,
-    children: [
-      {
-        path: "/home",
-        name: "Home",
-        component: Home,
-      },
-      {
-        path: "/about",
-        name: "About",
-        component: About,
-      },
-      {
-        path: "/database",
-        name: "Database",
-        component: Database,
-      }
-    ]
   },
-];
+  {
+    path: '*',
+    redirect: '/home',
+  },
+]
 
 const router = new IonicVueRouter({
-  routes
-});
+  routes,
+})
 
-export default router;
+export default router

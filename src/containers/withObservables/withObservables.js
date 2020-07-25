@@ -1,9 +1,9 @@
 import combineLatestObject from './combineLatestObject'
 import mapObject from './mapObject'
 import scheduleForCleanup from './garbageCollector'
-import Forwarding from "../../inline/Forwarding"
+import Forwarding from '../../inline/Forwarding'
 
-const toObservable = (value) =>
+const toObservable = value =>
   typeof value.observe === 'function' ? value.observe() : value
 
 function identicalArrays(left, right) {
@@ -28,17 +28,13 @@ const makeGetNewProps = getObservables =>
     return combineLatestObject(observables)
   }
 
-function getTriggeringProps(
-  props,
-  propNames,
-) {
+function getTriggeringProps(props, propNames) {
   if (!propNames) {
     return []
   }
 
   return propNames.map(name => props[name])
 }
-
 
 export default function(triggerProps, getObservables) {
   let _subscription
@@ -52,24 +48,24 @@ export default function(triggerProps, getObservables) {
     _subscription && _subscription.unsubscribe()
     cancelPrefetchTimeout()
   }
-  
+
   const getNewProps = makeGetNewProps(getObservables)
 
   const Mixin = {
-    data: function () {
+    data: function() {
       return {
         withObservablesData: {
           isFetching: true,
           values: {},
           triggeredFromProps: getTriggeringProps(this.$props, triggerProps),
-        }
+        },
       }
     },
     computed: {
-      shouldNotRender: function () {
+      shouldNotRender: function() {
         return this.withObservablesData.isFetching
       },
-      enhancingProps: function () {
+      enhancingProps: function() {
         console.log('<<<withObservables - computed - enhancingProps', this.withObservablesData)
         return { ...this.withObservablesData.values }
       },
@@ -91,7 +87,7 @@ export default function(triggerProps, getObservables) {
             // we need to explicitly log errors from the new observables, or they will get lost
             // TODO: It can be difficult to trace back the component in which this error originates. We should maybe propagate this as an error of the component? Or at least show in the error a reference to the component, or the original `getProps` function?
             console.error(`Error in Rx composition in withObservables()`, error)
-          },
+          }
         )
       },
       // DO NOT rename (we want on call stack as debugging help)
@@ -102,9 +98,9 @@ export default function(triggerProps, getObservables) {
           values,
           isFetching: false,
         }
-      }
+      },
     },
-    created: function () {
+    created: function() {
       this.subscribeWithoutSettingState(this.$props)
       scheduleForCleanup(() => {
         if (!_prefetchTimeoutCanceled) {
@@ -118,30 +114,30 @@ export default function(triggerProps, getObservables) {
         handler(nextProps) {
           const { triggeredFromProps } = this.withObservablesData
           const newTriggeringProps = getTriggeringProps(nextProps, triggerProps)
-        
+
           if (!identicalArrays(triggeredFromProps, newTriggeringProps)) {
             this.subscribe(nextProps, newTriggeringProps)
           }
         },
         deep: true,
         immediate: true,
-      }
+      },
     },
-    mounted: function () {
+    mounted: function() {
       cancelPrefetchTimeout()
-    
+
       if (!_subscription) {
         console.warn(
-          `withObservables - component mounted but no subscription present. Slow component (timed out) or something weird happened! Re-subscribing`,
+          `withObservables - component mounted but no subscription present. Slow component (timed out) or something weird happened! Re-subscribing`
         )
-    
+
         const newTriggeringProps = getTriggeringProps(this.$props, triggerProps)
         this.subscribe(this.$props, newTriggeringProps)
       }
     },
-    beforeDestroy: function () {
+    beforeDestroy: function() {
       unsubscribe()
-    }
+    },
   }
-  return (BaseComponent) => Forwarding(BaseComponent, Mixin)
+  return BaseComponent => Forwarding(BaseComponent, Mixin)
 }

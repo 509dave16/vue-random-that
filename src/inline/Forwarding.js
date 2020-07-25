@@ -1,4 +1,3 @@
-
 import Vue from 'vue'
 export default function(BaseComponent, Mixin) {
   const propsSchema = BaseComponent.options
@@ -7,7 +6,7 @@ export default function(BaseComponent, Mixin) {
   return Vue.extend({
     mixins: [Mixin],
     inheritAttrs: false,
-    name: "Forwarding",
+    name: 'Forwarding',
     props: { ...propsSchema },
     components: { BaseComponent },
     render: function (createElement) {
@@ -16,7 +15,8 @@ export default function(BaseComponent, Mixin) {
       }
       console.log('<<<Forwarding - should render!')
       return createElement(
-        'BaseComponent', {
+        'BaseComponent',
+        {
           attrs: this.$attrs,
           props: { ...this.$props, ...(this.enhancingProps || {})}
         },
