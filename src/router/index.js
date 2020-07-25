@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import { IonicVueRouter } from '@modus/ionic-vue'
-import App from '../pages/App.vue'
+import App from '../App.vue'
 Vue.use(IonicVueRouter)
 
 const routes = [

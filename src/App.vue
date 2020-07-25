@@ -35,9 +35,9 @@
 </style>
 
 <script>
-import Home from './Home.vue'
-import About from './About.vue'
-import Database from './Database'
+import Home from './tabs/Home.vue'
+import About from './tabs/About.vue'
+import Database from './tabs/Database'
 
 import { home, homeOutline, informationCircleOutline, informationCircle, cloudOutline, cloud, } from 'ionicons/icons'
 import { addIcons } from 'ionicons'
@@ -50,7 +50,7 @@ addIcons({
   cloud,
 })
 
-import { handleNavigationDuplicated } from '../utility/errors'
+import { handleNavigationDuplicated } from './utility/errors'
 
 export default {
   name: 'App',
