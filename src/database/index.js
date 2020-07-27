@@ -6,7 +6,7 @@ import migrations from './migrations'
 import modelClasses from './models'
 
 const adapter = new LokiJSAdapter({
-  version: 1,
+  version: 2,
   schema,
   migrations,
   useWebWorker: false,

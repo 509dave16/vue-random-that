@@ -1,9 +1,14 @@
-import Vue from 'vue'
 import '@ionic/core/css/ionic.bundle.css'
+import './database'
+import './registerServiceWorker'
+import './tabs'
+import './pages'
+
+import Vue from 'vue'
+
 import Ionic from '@modus/ionic-vue'
 Vue.use(Ionic)
 
-import './registerServiceWorker'
 import router from './router'
 import store from './store'
 

@@ -139,5 +139,8 @@ export default function(triggerProps, getObservables) {
       unsubscribe()
     },
   }
-  return BaseComponent => Forwarding(BaseComponent, Mixin)
+
+  return function(BaseComponent) {
+    return Forwarding(BaseComponent, Mixin)
+  }
 }

@@ -5,10 +5,13 @@
         <Home />
       </ion-tab>
       <ion-tab tab="about">
-        <About />
+        <ion-nav root="vrt-about" />
       </ion-tab>
       <ion-tab tab="database">
         <Database />
+      </ion-tab>
+      <ion-tab tab="lists">
+        <ion-nav root="vrt-lists" />
       </ion-tab>
       <ion-tab-bar slot="bottom">
         <ion-tab-button tab="home">
@@ -23,6 +26,10 @@
           <ion-icon class="tab-icon" v-bind:name="getIconName('database', 'cloud')" />
           <ion-label>Database</ion-label>
         </ion-tab-button>
+        <ion-tab-button tab="lists">
+          <ion-icon class="tab-icon" v-bind:name="getIconName('lists', 'list')" />
+          <ion-label>Lists</ion-label>
+        </ion-tab-button>
       </ion-tab-bar>
     </ion-tabs>
   </div>
@@ -35,11 +42,11 @@
 </style>
 
 <script>
+/* eslint-disable vue/no-unused-components */
 import Home from './tabs/Home.vue'
-import About from './tabs/About.vue'
 import Database from './tabs/Database'
 
-import { home, homeOutline, informationCircleOutline, informationCircle, cloudOutline, cloud, } from 'ionicons/icons'
+import { home, homeOutline, informationCircleOutline, informationCircle, cloudOutline, cloud, listOutline, list, add } from 'ionicons/icons'
 import { addIcons } from 'ionicons'
 addIcons({
   home,
@@ -48,6 +55,9 @@ addIcons({
   'information-circle': informationCircle,
   'cloud-outline': cloudOutline,
   cloud,
+  'list-outline': listOutline,
+  list,
+  add,
 })
 
 import { handleNavigationDuplicated } from './utility/errors'
@@ -56,7 +66,6 @@ export default {
   name: 'App',
   components: {
     Home,
-    About,
     Database,
   },
   data: function() {
