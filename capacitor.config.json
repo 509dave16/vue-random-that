@@ -1,0 +1,13 @@
+{
+  "appId": "com.vue.random.that.app",
+  "appName": "vue-random-that",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "dist",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {}
+}

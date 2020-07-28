@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">vue-random-that</string>
+    <string name="title_activity_main">vue-random-that</string>
+    <string name="package_name">com.vue.random.that.app</string>
+    <string name="custom_url_scheme">com.vue.random.that.app</string>
+</resources>
