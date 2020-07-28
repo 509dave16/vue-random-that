@@ -45,21 +45,6 @@
 /* eslint-disable vue/no-unused-components */
 import Home from './tabs/Home.vue'
 import Database from './tabs/Database'
-
-import { home, homeOutline, informationCircleOutline, informationCircle, cloudOutline, cloud, listOutline, list, add } from 'ionicons/icons'
-import { addIcons } from 'ionicons'
-addIcons({
-  home,
-  'home-outline': homeOutline,
-  'information-circle-outline': informationCircleOutline,
-  'information-circle': informationCircle,
-  'cloud-outline': cloudOutline,
-  cloud,
-  'list-outline': listOutline,
-  list,
-  add,
-})
-
 import { handleNavigationDuplicated } from './utility/errors'
 
 export default {

@@ -1,11 +1,14 @@
 import '@ionic/core/css/ionic.bundle.css'
+require('./assets/app.css')
+import addIonicons from './config/addIonicons'
 import './database'
 import './registerServiceWorker'
 import './tabs'
 import './pages'
 
-import Vue from 'vue'
+addIonicons()
 
+import Vue from 'vue'
 import Ionic from '@modus/ionic-vue'
 Vue.use(Ionic)
 
