@@ -1,20 +1,23 @@
 <template>
-  <div>
-    <div>Hello World</div>
-    <button v-on:click="generate100">Generate 100 More</button>
-    <ol>
-      <li v-for="blog in blogs" v-bind:key="blog.id">
-        {{ blog.name }}
-      </li>
-    </ol>
-  </div>
+  <Page headerTitle="Database">
+    <ion-button v-on:click="generate100">Generate 100 More</ion-button>
+    <ion-list>
+      <ion-item v-for="blog in blogs" v-bind:key="blog.id">
+        <ion-label>{{ blog.name }}</ion-label>
+      </ion-item>
+    </ion-list>
+  </Page>
 </template>
 
 <script>
 import { generate100 } from '../../database/models/generate'
 import database from '../../database'
+import Page from '../../components/Page.vue'
 
 export default {
+  components: {
+    Page
+  },
   props: {
     blogs: {
       default: function () { return [] },
