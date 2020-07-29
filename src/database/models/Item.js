@@ -21,4 +21,10 @@ export default class Item extends Model {
   @action delete() {
     return this.destroyPermanently()
   }
+
+  @action toggleDone() {
+    return this.update(item => {
+      item.done = !item.done
+    })
+  }
 }

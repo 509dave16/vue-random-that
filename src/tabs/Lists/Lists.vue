@@ -1,7 +1,7 @@
 <template>
   <Page headerTitle="Lists">
     <ion-list ref="ionList">
-      <ion-item-sliding v-for="list in lists" v-bind:key="list.id">
+      <ion-item-sliding v-for="list in sortedLists" v-bind:key="list.id">
         <ion-item v-on:click="goTo(list)">
           <ion-label>{{list.name}}</ion-label>
         </ion-item>
@@ -45,6 +45,8 @@ import { push } from '../../utility/nav'
 import Page from '../../components/Page'
 import database from '../../database'
 
+import _ from 'lodash'
+
 export default {
   components: {
     Page,
@@ -61,6 +63,11 @@ export default {
       listName: '',
       editMode: false,
     }
+  },
+  computed: {
+    sortedLists: function() {
+      return _.sortBy(this.lists, ['name'])
+    },
   },
   methods: {
     deleteList: function(list) {

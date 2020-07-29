@@ -6,7 +6,7 @@
           <ion-buttons slot="start">
             <ion-back-button v-bind:default-href="backHref"></ion-back-button>
           </ion-buttons>
-          <ion-title class="ion-text-center">{{headerTitle}}</ion-title>
+          <ion-title mode="ios" class="ion-text-center">{{headerTitle}}</ion-title>
         </ion-toolbar>
       </ion-header>
     </slot>

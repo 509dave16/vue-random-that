@@ -5,7 +5,7 @@ import { customElement } from '../../utility/webComponent'
 
 const ObservingLists = withObservables(null, function() {
   return {
-    lists: database.collections.get('lists').query().observe()
+    lists: database.collections.get('lists').query().observeWithColumns(['name'])
   }
 })(Lists)
 

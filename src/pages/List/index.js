@@ -13,7 +13,7 @@ const ObservingList = withObservables(['listId'], function({ listId }) {
 const ObservingItems = withObservables(['list'], function({ listId, list }) {
   console.log('<<<list - ', list)
   return {
-    items: database.collections.get('items').query(Q.where('list_id', listId)).observe(),
+    items: database.collections.get('items').query(Q.where('list_id', listId)).observeWithColumns(['name']),
   }
 })(ObservingList)
 
