@@ -6,3 +6,8 @@ export function push(component, componentProps) {
   const nav = getNav()
   nav.push(component, componentProps)
 }
+
+export function pop() {
+  const nav = getNav()
+  nav.pop()
+}

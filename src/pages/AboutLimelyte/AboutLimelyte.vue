@@ -1,5 +1,5 @@
 <template>
-  <Page headerTitle="About Limelyte" backHref="about">
+  <Page headerTitle="About Limelyte">
     <ion-grid class="ion-justify-content-center">
       <ion-row>
         <ion-text>

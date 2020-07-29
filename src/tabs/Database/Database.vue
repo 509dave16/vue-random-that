@@ -1,5 +1,5 @@
 <template>
-  <Page headerTitle="Database">
+  <Page headerTitle="Database" v-bind:backButton="false" v-bind:forwardingDelayRender="false">
     <ion-button v-on:click="generate100">Generate 100 More</ion-button>
     <ion-list>
       <ion-item v-for="blog in blogs" v-bind:key="blog.id">
@@ -12,22 +12,22 @@
 <script>
 import { generate100 } from '../../database/models/generate'
 import database from '../../database'
-import Page from '../../components/Page.vue'
+import Page from '../../components/Page'
 
 export default {
   components: {
-    Page
+    Page,
   },
   props: {
     blogs: {
-      default: function () { return [] },
+      default: function() { return [] },
       type: Array,
-    }
+    },
   },
   methods: {
-    generate100: function () {
+    generate100: function() {
       generate100(database)
-    }
+    },
   },
   watch: {
     $props: {
@@ -36,7 +36,7 @@ export default {
       },
       deep: true,
       immediate: true,
-    }
-  }
+    },
+  },
 }
 </script>

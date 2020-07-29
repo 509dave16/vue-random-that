@@ -1,6 +1,6 @@
 <template>
   <div class="ion-page ion-text-center">
-    <ion-tabs ref="tabs" v-on:ionTabsDidChange="onTabChange">
+    <ion-tabs id="tabs" ref="tabs" v-on:ionTabsDidChange="onTabChange">
       <ion-tab tab="home">
         <Home />
       </ion-tab>
@@ -8,7 +8,7 @@
         <ion-nav root="vrt-about" />
       </ion-tab>
       <ion-tab tab="database">
-        <Database />
+        <ion-nav root="vrt-database" />
       </ion-tab>
       <ion-tab tab="lists">
         <ion-nav root="vrt-lists" />
@@ -44,14 +44,14 @@
 <script>
 /* eslint-disable vue/no-unused-components */
 import Home from './tabs/Home.vue'
-import Database from './tabs/Database'
-import { handleNavigationDuplicated } from './utility/errors'
+import getNavObservable from './observables/nav'
+
+const debug = false
 
 export default {
   name: 'App',
   components: {
     Home,
-    Database,
   },
   data: function() {
     return {
@@ -60,23 +60,21 @@ export default {
   },
   methods: {
     onTabChange: function(event) {
-      console.log('<<<onTabChange - event', event)
+      debug && console.log('<<<onTabChange - event', event)
       this.activeTab = event.detail.tab
-      this.$router.replace({ name: 'App', params: { tab: this.activeTab } }).catch(handleNavigationDuplicated)
     },
     getIconName: function(tab, iconName) {
       return iconName + (tab === this.activeTab ? '' : '-outline')
     },
   },
-  watch: {
-    $route(toRoute, fromRoute) {
-      // react to route changes...
-      console.log('<<<route change', toRoute, fromRoute)
-      if (this.activeTab !== toRoute.params.tab) {
-        this.activeTab = toRoute.params.tab
-        this.$refs.tabs.select(this.activeTab)
-      }
-    },
+  mounted: function() {
+    if (debug) {
+      getNavObservable().subscribe(value => {
+        if (value) {
+          console.log('<<<APP - ion nav for tab', value.getAttribute('root'))
+        }
+      })
+    }
   },
 }
 </script>

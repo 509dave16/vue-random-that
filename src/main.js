@@ -12,10 +12,11 @@ import Vue from 'vue'
 import Ionic from '@modus/ionic-vue'
 Vue.use(Ionic)
 
-import router from './router'
+// import router from './router'
+import App from './App'
 import store from './store'
 
 Vue.config.productionTip = false
 Vue.config.devtools = false
 
-new Vue({ router, store }).$mount('ion-app')
+new Vue({ store, render: h => h(App) }).$mount('#app')

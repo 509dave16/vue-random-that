@@ -125,6 +125,15 @@ export default {
       this.$refs.ionList.closeSlidingItems()
       this.editMode = !this.editMode
     },
+  watch: {
+    $props: {
+      handler(nextProps, prevProps) {
+        console.log('<<<List.vue - watch - $props', nextProps)
+        console.log('Is items array same as before?', prevProps.items === nextProps.items)
+      },
+      deep: true,
+      immediate: true,
+    },
   },
 }
 </script>

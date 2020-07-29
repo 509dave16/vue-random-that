@@ -1,5 +1,5 @@
 <template>
-  <Page headerTitle="About">
+  <Page headerTitle="About" v-bind:backButton="false">
     <ion-button color="primary" fill="clear" v-on:click="goTo('vrt-about-codera')">Codera</ion-button>
     <ion-button color="primary" fill="clear" v-on:click="goTo('vrt-about-limelyte')">Limelyte</ion-button>
     <ion-button color="primary" fill="clear" v-on:click="goTo('vrt-about-test-innovators')">Test Innovators</ion-button>
@@ -18,16 +18,23 @@ Page {
 </style>
 
 <script>
-import { push } from '../../utility/nav'
 import Page from '../../components/Page'
 
 export default {
   components: {
     Page,
   },
+  props: {
+    nav: {
+      default: () => null,
+      type: HTMLElement,
+    },
+  },
   methods: {
     goTo: function(page) {
-      push(page)
+      if (this.nav) {
+        this.nav.push(page)
+      }
     },
   },
 }

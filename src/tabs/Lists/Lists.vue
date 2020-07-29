@@ -1,5 +1,5 @@
 <template>
-  <Page headerTitle="Lists">
+  <Page headerTitle="Lists" v-bind:backButton="false">
     <ion-list ref="ionList">
       <ion-item-sliding v-for="list in lists" v-bind:key="list.id">
         <ion-item v-on:click="goTo(list)">
@@ -41,9 +41,10 @@ Page {
 
 <script>
 import { alertController } from '@modus/ionic-vue'
-import { push } from '../../utility/nav'
 import Page from '../../components/Page'
 import database from '../../database'
+
+import _ from 'lodash'
 
 export default {
   components: {
@@ -53,6 +54,10 @@ export default {
     lists: {
       default: () => [],
       type: Array,
+    },
+    nav: {
+      default: () => null,
+      type: HTMLElement,
     },
   },
   data: function() {
@@ -113,7 +118,19 @@ export default {
       this.editMode = !this.editMode
     },
     goTo: function(list) {
-      push('vrt-list', { listId: list.id, listName: list.name })
+      if (this.nav) {
+        this.nav.push('vrt-list', { listId: list.id, listName: list.name })
+      }
+    },
+  },
+  watch: {
+    $props: {
+      handler(nextProps, prevProps) {
+        console.log('<<<Lists.vue - watch - $props', nextProps)
+        console.log('Is lists array same as before?', prevProps.lists === nextProps.lists)
+      },
+      deep: true,
+      immediate: true,
     },
   },
 }

@@ -1,22 +1,15 @@
 import List from './List'
 import { Q } from '@nozbe/watermelondb'
-import withObservables from '../../containers/withObservables'
+import withObservables from '../../components/containers/withObservables'
 import database from '../../database'
 import { customElement } from '../../utility/webComponent'
 
-const ObservingList = withObservables(['listId'], function({ listId }) {
+const ObservingListAndItems = withObservables(['listId'], function({ listId }) {
   return {
     list: database.collections.get('lists').findAndObserve(listId),
+    items: database.collections.get('items').query(Q.where('list_id', listId)).observeWithColumns(['name']),
   }
 })(List)
 
-const ObservingItems = withObservables(['list'], function({ listId, list }) {
-  console.log('<<<list - ', list)
-  return {
-    items: database.collections.get('items').query(Q.where('list_id', listId)).observe(),
-  }
-})(ObservingList)
-
-customElement('vrt-list', ObservingItems)
-
-export default ObservingItems
+customElement('vrt-list', ObservingListAndItems)
+export default ObservingListAndItems

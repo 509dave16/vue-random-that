@@ -1,7 +1,9 @@
 import combineLatestObject from './combineLatestObject'
 import mapObject from './mapObject'
 import scheduleForCleanup from './garbageCollector'
-import Forwarding from '../../inline/Forwarding'
+import Forwarding from '../../Forwarding'
+
+const debug = true
 
 const toObservable = value =>
   typeof value.observe === 'function' ? value.observe() : value
@@ -66,7 +68,7 @@ export default function(triggerProps, getObservables) {
         return this.withObservablesData.isFetching
       },
       enhancingProps: function() {
-        console.log('<<<withObservables - computed - enhancingProps', this.withObservablesData)
+        debug && console.log('<<<withObservables - computed - enhancingProps', this.withObservablesData)
         return { ...this.withObservablesData.values }
       },
     },
@@ -92,7 +94,7 @@ export default function(triggerProps, getObservables) {
       },
       // DO NOT rename (we want on call stack as debugging help)
       withObservablesOnChange(values) {
-        console.log('<<<withObservables - withObservablesOnChange - values', values)
+        debug && console.log('<<<withObservables - withObservablesOnChange - values', values)
         this.withObservablesData = {
           ...this.withObservablesData,
           values,
@@ -140,7 +142,7 @@ export default function(triggerProps, getObservables) {
     },
   }
 
-  return function(BaseComponent) {
-    return Forwarding(BaseComponent, Mixin)
+  return function(BaseComponent, options) {
+    return Forwarding(BaseComponent, Mixin, options)
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <Page  headerTitle="Home">
+  <Page  headerTitle="Home" v-bind:backButton="false">
     <img alt="Vue logo" src="../assets/logo.png" />
     <HelloWorld msg="Welcome to Your Vue.js App" />
   </Page>

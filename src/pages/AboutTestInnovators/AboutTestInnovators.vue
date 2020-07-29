@@ -1,5 +1,5 @@
 <template>
-  <Page headerTitle="About Test Innovators" backHref="about">
+  <Page headerTitle="About Test Innovators">
     <ion-grid class="ion-justify-content-center">
       <ion-row>
         <ion-text>

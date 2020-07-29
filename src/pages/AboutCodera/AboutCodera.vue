@@ -1,5 +1,5 @@
 <template>
-  <Page headerTitle="About Codera" backHref="about">
+  <Page headerTitle="About Codera">
     <ion-grid class="ion-justify-content-center">
       <ion-row>
         <ion-text>
