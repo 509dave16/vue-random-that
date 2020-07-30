@@ -19,7 +19,22 @@ There was an attempt to refactor the folder structure and some aspects of the ap
 
 
 ### Tabs
+Using `ion-tabs`, we have bottom tab navigation. This would be akin to have a Tab Navigator or Tab Router.
 
+![ion-tabs.png](https://i.postimg.cc/nLVw9Xc6/ion-tabs.png)
+
+### Stack Navigation
+The idea behind using `ion-nav` for the tabs **About** and **Lists** is that we could go deeper in either stack(1 level in this POC), but their histories would remain separate. So going back in one doesn't result in going back in the other. And we could switch between them since they are tabs. `ion-nav` is basically the equivalent of a Stack Navigator or Stack Router.
+
+About Tab Root | About Details | Lists Tab Root | Movies List  
+-------------- | --------------| -------------- | -----------
+<img src="https://i.postimg.cc/DZ8j5RG6/about-page.png" width="150" height="300" /> | <img src="https://i.postimg.cc/FHVBKymy/about-limelyte-page.png" width="150" height="300" /> | <img src="https://i.postimg.cc/Kzw9WQr2/lists-page.png" width="150" height="300" /> | <img src="https://i.postimg.cc/wMNWYJ0s/movies-page.png" width="150" height="300" />
+
+### Random Tabs
+**Home** tab is from the `vue-cli` scaffolding. And the **Database** tab contains example code ported from [WatermelonDB](https://github.com/Nozbe/WatermelonDB/tree/master/examples/web/src).
+
+### Reactivity using withObservables HOC(higher order component)
+WatermelonDB was a client side database that I have wanted to try using. It's meant to be used with React Native or the Web. But the helper package `withObservables` was meant to be used in React projects. So I made my own Vue version of `withObservables`, which was not recommended by Evan you 
 
 ## Project setup
 ```
