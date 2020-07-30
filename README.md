@@ -42,7 +42,7 @@ For this to work, I had to register all the tab components as Custom Elements! S
 In any case for the **Lists** and **List Items** pages, we can add, edit, or delete elements from the list simply by modifying the local db while our component is hooked up to Observables for specific queries. See `src/tabs/Lists/index.js` and `src/pages/List/index.js` for examples of this.
 
 ### Random That
-So the main feature of the app is comprised of the **Lists* and **List Items** tabs. Random That is basically a spin off of Todo List. You can use it just like Todo List. But if you wanted a randomized selection for what to do next, you can access the "Random" FAB action on **List Items**. In addition, once you have done all the items and you press the "Random" FAB action, it will pick a new random selection and reset the rest of items to not done. In this way people people could randomly select one of their next favorite things to do. And once they have done all of them, they could start it all over again!
+So the main feature of the app is comprised of the **Lists** and **List Items** tabs. Random That is basically a spin off of Todo List. You can use it just like Todo List. But if you wanted a randomized selection for what to do next, you can access the "Random" FAB action on **List Items**. In addition, once you have done all the items and you press the "Random" FAB action, it will pick a new random selection and reset the rest of items to not done. In this way people people could randomly select one of their next favorite things to do. And once they have done all of them, they could start it all over again!
 
 "Random" Action | Random Selection
 --------------- | ----------------
