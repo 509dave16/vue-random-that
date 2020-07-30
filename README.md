@@ -33,7 +33,7 @@ About Tab Root | About Details | Lists Tab Root | Movies List
 For this to work, I had to register all the tab components as Custom Elements! So I used `vue-custom-elements` to achieve that.
 
 ### Random Tabs
-**Home** tab is from the `vue-cli` scaffolding. And the **Database** tab contains example code ported from [WatermelonDB](https://github.com/Nozbe/WatermelonDB/tree/master/examples/web/src).
+**Home** tab is from the `vue-cli` scaffolding. And the **Database** tab contains example code ported from [WatermelonDB](https://github.com/Nozbe/WatermelonDB/tree/master/examples/web/src) in order to briefly test that `WatermelonDB` is working in the project.
 
 ### Reactivity using withObservables HOC(higher order component) and WatermelonDB
 `WatermelonDB` is a client side database that I have wanted to try using. It's meant to be used on React Native or the Web. But the helper package `withObservables` was meant to be used in React projects. So I made my own Vue version of `withObservables`, which was not recommended by Evan Yu. He wasn't exactly thrilled by my example of an HOC component when there's a Composition API 😅 : https://github.com/vuejs/vue-next/issues/1671 . I will most likely end up transitioning to using the Composition API instead. The `Forwarding.js` and `withObservables.js` decoractor functions were simply my attempt at porting `withObservables` from React HOC to a Vue HOC.
