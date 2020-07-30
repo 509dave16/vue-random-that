@@ -5,6 +5,7 @@ This project was an attempt to showcase a simple proof of concept for a ionic mo
 
 This was also a part of an effort on my part to learn Vue and apply it to something.
 
+## Use/Install
 App is currently available at the following locations
 - **Web** - Open link and enjoy : https://vue-random-that.web.app/
 - **Android APK** - Download file and enjoy the install : https://drive.google.com/file/d/1WT_MPCk0vJEhh5aidNHoqpwJu2nPqOC1/view?usp=sharing
