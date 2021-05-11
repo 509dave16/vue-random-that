@@ -24,7 +24,7 @@
     "@nozbe/watermelondb": "^0.17.0",
     "core-js": "^3.6.5",
     "ionicons": "^5.1.2",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "rambdax": "^3.7.0",
     "register-service-worker": "^1.7.1",
     "rxjs": "^6.4.2",
